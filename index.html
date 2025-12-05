@@ -859,9 +859,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            padding: 0; /* NO padding - full screen! */
             cursor: pointer;
             transition: opacity 0.3s ease;
+            overflow: hidden;
         }
 
         .hero-section.hidden {
@@ -869,75 +870,53 @@
         }
 
         .hero-section:hover {
-            opacity: 0.95;
+            opacity: 0.98;
         }
 
         .hero-image-container {
             position: relative;
-            max-width: 90%;
-            max-height: 85vh;
+            width: 100%; /* Full width! */
+            height: 100%; /* Full height! */
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .hero-image {
-            max-width: 100%;
-            max-height: 85vh;
-            object-fit: contain;
+            width: 100%; /* Edge to edge horizontally */
+            height: 100%; /* Full height */
+            object-fit: cover; /* Cover entire area, crop if needed */
             display: block;
         }
 
-        .hero-red-rectangle {
-            position: absolute;
-            top: 2rem; /* Close to top edge */
-            left: 2rem; /* Close to left edge */
-            right: 2rem; /* Close to right edge */
-            bottom: 2rem; /* Close to bottom edge */
-            border: 6px solid var(--accent); /* Thick book frame border */
-            pointer-events: none;
-            z-index: 1;
-        }
+        /* NO RECTANGLE - removed completely */
 
         .hero-text-overlay {
             position: absolute;
-            bottom: 4rem; /* Inside the frame, at bottom */
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: 3rem; /* At bottom */
+            left: 0;
+            right: 0;
             z-index: 2;
             pointer-events: none;
-            width: 100%;
             text-align: center;
         }
 
         .hero-tagline {
             font-family: 'Crimson Text', serif;
-            font-size: 0.8rem; /* Small, elegant */
-            letter-spacing: 0.2em;
+            font-size: 0.85rem; /* Visible but elegant */
+            letter-spacing: 0.25em;
             text-transform: uppercase;
             color: var(--black);
             margin: 0;
             font-weight: 400;
-            opacity: 0.7;
-            white-space: nowrap; /* Keep in one line */
+            opacity: 0.8;
+            white-space: nowrap;
         }
 
         @media (max-width: 768px) {
-            .hero-image-container {
-                max-width: 95%;
-                max-height: 80vh;
-            }
-
-            .hero-red-rectangle {
-                top: 1rem;
-                left: 1rem;
-                right: 1rem;
-                bottom: 1rem;
-                border-width: 4px;
-            }
-
             .hero-tagline {
-                font-size: 0.65rem;
+                font-size: 0.7rem;
+                letter-spacing: 0.2em;
             }
 
             .hero-text-overlay {
@@ -1619,7 +1598,6 @@
     <section class="hero-section" id="heroSection" onclick="showCollection()">
         <div class="hero-image-container">
             <img src="balthus-delabre.jpg" alt="Délabré" class="hero-image">
-            <div class="hero-red-rectangle"></div>
             <div class="hero-text-overlay">
                 <p class="hero-tagline">ACCUMULATION OF OBJECTS</p>
             </div>
