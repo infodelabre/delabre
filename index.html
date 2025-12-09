@@ -736,6 +736,101 @@
             background: var(--accent);
         }
 
+        /* New Layout - Description Top, Form Bottom */
+        .herri-content-wrapper {
+            padding: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .herri-info-full {
+            margin-bottom: 3rem;
+        }
+
+        .herri-inquiry-bottom {
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 3rem;
+        }
+
+        .herri-inquiry-bottom h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            margin: 0 0 2rem 0;
+            text-transform: uppercase;
+        }
+
+        .herri-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .herri-input-wide {
+            width: 100%;
+            padding: 1rem;
+            font-family: 'Crimson Text', serif;
+            font-size: 1rem;
+            border: 1px solid rgba(0,0,0,0.2);
+            background: white;
+            transition: border-color 0.3s ease;
+        }
+
+        .herri-input-wide:focus {
+            outline: none;
+            border-color: var(--black);
+        }
+
+        .herri-textarea-wide {
+            width: 100%;
+            padding: 1rem;
+            font-family: 'Crimson Text', serif;
+            font-size: 1rem;
+            border: 1px solid rgba(0,0,0,0.2);
+            background: white;
+            resize: vertical;
+            min-height: 120px;
+            margin-bottom: 1.5rem;
+        }
+
+        .herri-textarea-wide:focus {
+            outline: none;
+            border-color: var(--black);
+        }
+
+        .herri-submit-wide {
+            width: 100%;
+            padding: 1.2rem;
+            font-family: 'Crimson Text', serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            background: var(--black);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-weight: 600;
+        }
+
+        .herri-submit-wide:hover {
+            background: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .herri-form-row {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .herri-content-wrapper {
+                padding: 2rem 1.5rem;
+            }
+        }
+
         /* Location Images - Horizontal Scroll */
         .location-images-scroll {
             display: flex;
@@ -903,8 +998,8 @@
 
         .hero-tagline {
             font-family: 'Crimson Text', serif;
-            font-size: 0.85rem; /* Visible but elegant */
-            letter-spacing: 0.25em;
+            font-size: 1.1rem; /* Bigger, more confident */
+            letter-spacing: 0.3em;
             text-transform: uppercase;
             color: var(--black);
             margin: 0;
@@ -1583,7 +1678,7 @@
     <!-- Navigation - Top Bar Jacquemus Style -->
     <nav>
         <div class="nav-left">
-            <div class="logo">DÉ.LA.BRÉ</div>
+            <a href="#about" class="logo" style="text-decoration: none; color: var(--black); cursor: pointer;">DÉ.LA.BRÉ</a>
         </div>
         <div class="nav-right">
             <a href="#" onclick="openLocationModal('paris'); return false;">Rue Elzévir</a>
@@ -1669,10 +1764,10 @@
                     <!-- Images will be inserted here by JavaScript -->
                 </div>
 
-                <!-- Bottom: Info Bar with Details + Inquiry -->
-                <div class="location-info-bar" style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem;">
-                    <!-- Left: Item Info -->
-                    <div class="herri-info">
+                <!-- Bottom: Item Info + Inquiry Form -->
+                <div class="herri-content-wrapper">
+                    <!-- Item Info Full Width -->
+                    <div class="herri-info-full">
                         <h1 class="herri-item-name" id="itemName"></h1>
                         <p class="herri-item-price" id="itemPrice"></p>
                         
@@ -1688,23 +1783,20 @@
                         </div>
                     </div>
 
-                    <!-- Right: Inquiry Form -->
-                    <div class="herri-inquiry">
+                    <!-- Inquiry Form Full Width at Bottom -->
+                    <div class="herri-inquiry-bottom">
                         <h3>INQUIRE</h3>
-                        <form class="herri-inquiry-form" onsubmit="submitItemInquiry(event)">
-                            <div class="herri-form-group">
-                                <input type="text" class="herri-input" name="name" placeholder="Name" required>
+                        <form class="herri-inquiry-form-wide" onsubmit="submitItemInquiry(event)">
+                            <div class="herri-form-row">
+                                <input type="text" class="herri-input-wide" name="name" placeholder="Name" required>
+                                <input type="email" class="herri-input-wide" name="email" placeholder="Email" required>
                             </div>
                             
                             <div class="herri-form-group">
-                                <input type="email" class="herri-input" name="email" placeholder="Email" required>
+                                <textarea class="herri-textarea-wide" name="message" placeholder="Message" required rows="4"></textarea>
                             </div>
                             
-                            <div class="herri-form-group">
-                                <textarea class="herri-textarea" name="message" placeholder="Message" required rows="6"></textarea>
-                            </div>
-                            
-                            <button type="submit" class="herri-submit">SEND INQUIRY</button>
+                            <button type="submit" class="herri-submit-wide">SEND INQUIRY</button>
                         </form>
                     </div>
                 </div>
@@ -1841,20 +1933,27 @@
         <div class="about-text">
             <h2 class="about-title">DÉ.LA.BRÉ</h2>
             <p class="about-description">
-                These objects don't passively occupy space. They interfere. They shift behavior without announcing themselves. Like Latham's Chew and Spit—they enter the body of daily life, get processed, leave traces. They're tools for living differently, even if just slightly.
+                De.la.bre lives in the gap between taste and accident. Between what we seek and what we stumble into.
             </p>
             <p class="about-description">
-                A collision more than a collection. Objects chosen not for what they represent, but for what they do—graphically, spatially, instinctively.
+                These objects don't passively occupy space. They interfere. Like Latham's Chew and Spit, they enter the body of daily life, get processed, leave traces.
             </p>
             <p class="about-description">
-                De.la.bre lives in the gap between taste and accident. Between what we seek and what we stumble into. It's the friction of unlike things sharing space—not forced into harmony, but allowed to coexist in their differences. Design not as resolution, but as tension.
+                We source between Rome and Paris. A collision of styles and periods. Renaissance revival furniture sits next to industrial finds. Objects chosen not for what they represent, but for what they do: graphically, spatially, instinctively.
+            </p>
+            <p class="about-description">
+                Patina stays, cracks remain, differences coexist. Design as tension, not resolution.
             </p>
             <p class="about-description" style="font-style: italic; margin-top: 2rem;">
-                No manifesto. No master plan. Just what works, what speaks, what stays.
+                Sold as found. Honest wear. No manifesto.
             </p>
-            <p class="about-location">
-                Rue Elzévir, 75003 Paris<br>
-                Via dei Coronari, 00186 Roma
+            <p class="about-location" style="margin-top: 2rem;">
+                <strong>Showrooms by appointment:</strong><br>
+                Rue Elzévir, Paris<br>
+                Via dei Coronari, Roma
+            </p>
+            <p class="about-description" style="font-size: 0.9rem; margin-top: 2rem; opacity: 0.7;">
+                Founded 2025 by Frandarue
             </p>
         </div>
         <div class="about-image" style="background-image: url('balthus-delabre.jpg'); background-size: cover; background-position: center;">
@@ -2308,15 +2407,35 @@
             const formData = new FormData(form);
             const item = itemGalleries[currentItemId];
             
-            // Create mailto link
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            // Create mailto link with proper formatting
             const subject = `Inquiry: ${item.name}`;
-            const body = `Name: ${formData.get('name')}%0D%0AEmail: ${formData.get('email')}%0D%0A%0D%0AItem: ${item.name}%0D%0APeriod: ${item.period}%0D%0A%0D%0AMessage:%0D%0A${formData.get('message')}`;
-            const mailtoLink = `mailto:info.delabre@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+            const body = `Name: ${name}
+Email: ${email}
+
+Item: ${item.name}
+Period: ${item.period}
+
+Message:
+${message}`;
             
-            // Open mailto
-            window.location.href = mailtoLink;
+            const mailtoLink = `mailto:info.delabre@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             
-            // Close modal after a short delay
+            // Try to open email client
+            const emailOpened = window.open(mailtoLink, '_self');
+            
+            // Show confirmation to user
+            alert(`Thank you ${name}! 
+
+Your inquiry about "${item.name}" will open in your email client.
+
+If your email doesn't open automatically, please send your inquiry directly to:
+info.delabre@gmail.com`);
+            
+            // Close modal and reset form
             setTimeout(() => {
                 closeItemModal();
                 form.reset();
